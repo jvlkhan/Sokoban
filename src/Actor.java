@@ -1,0 +1,54 @@
+import java.awt.Image;
+import java.util.*;
+
+public class Actor {
+	private final int SPACE = 20;
+	private int x;
+	private int y;
+	private Image image;
+
+	public Actor(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image img) {
+		image = img;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public boolean leftCollision(Actor actor) {
+		return getX() - SPACE == actor.getX() && getY() == actor.getY();
+	}
+
+	public boolean rightCollision(Actor actor) {
+		return getX() + SPACE == actor.getX() && getY() == actor.getY();
+	}
+	
+	public boolean topCollision(Actor actor) {
+		return getY() - SPACE == actor.getY() && getX() == actor.getX();
+	}
+	
+	public boolean bottomCollision(Actor actor) {
+		return getY() + SPACE == actor.getY() && getX() == actor.getX();
+	}
+}
