@@ -12,6 +12,7 @@ public class Main {
 		frame.add(view);
 		frame.setVisible(true);
 		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.repaint();
 	}
 }

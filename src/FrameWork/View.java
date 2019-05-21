@@ -8,19 +8,20 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
-public class View extends JPanel implements KeyListener {
+public class View extends JPanel implements KeyListener, Observer {
 
 	int width;
 	int height;
 	private Game game;
 
 	public View(Game g) {
-
 		game = g;
+		g.addObs(this);
 		width = 600;
 		height = 600;
 		setPreferredSize(new Dimension(width, height));
-
+		addKeyListener(this);
+		setFocusable(true);
 	}
 
 	@Override
@@ -34,7 +35,6 @@ public class View extends JPanel implements KeyListener {
 
 		if (key == KeyEvent.VK_RIGHT) {
 			game.rightPressed();
-
 		}
 		if (key == KeyEvent.VK_LEFT) {
 			game.leftPressed();
@@ -55,7 +55,7 @@ public class View extends JPanel implements KeyListener {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		System.out.println("ritar");
+		//System.out.println("ritar");
 		Actor[][] board = game.getBoard();
 		int square = width / board.length;
 
@@ -74,4 +74,9 @@ public class View extends JPanel implements KeyListener {
 		}
 	}
 
+	@Override
+	public void updater() {
+		// TODO Auto-generated method stub
+		repaint();
+	}
 }
