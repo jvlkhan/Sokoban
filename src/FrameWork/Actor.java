@@ -1,3 +1,5 @@
+package FrameWork;
+
 import java.awt.Image;
 import java.util.*;
 
@@ -43,11 +45,11 @@ public class Actor {
 	public boolean rightCollision(Actor actor) {
 		return getX() + SPACE == actor.getX() && getY() == actor.getY();
 	}
-	
+
 	public boolean topCollision(Actor actor) {
 		return getY() - SPACE == actor.getY() && getX() == actor.getX();
 	}
-	
+
 	public boolean bottomCollision(Actor actor) {
 		return getY() + SPACE == actor.getY() && getX() == actor.getX();
 	}
