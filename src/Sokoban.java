@@ -1,45 +1,52 @@
+import java.util.ArrayList;
+
 import FrameWork.Actor;
 import FrameWork.Game;
+import FrameWork.Observer;
 
 public class Sokoban extends Game {
 
-	String level1 = "##########" + 
-					"#  b     #" + 
-					"#  b     #" + 
-					"#s b###x##" + 
-					"#   #  ###" + 
-					"#x     ###" + 
-					"#x   b  x#" + 
-					"## b    x#" + 
-					"###      #" + 
-					"##########" ;
-	
+	String level1 = "##########" + "#  b     #" + "#  b     #" + "#s b###x##" + "#   #  ###" + "#x     ###"
+			+ "#x   b  x#" + "## b    x#" + "###      #" + "##########";
+
 	Player sokoPlayer;
-	
+	ArrayList<Box> boxList;
+
+	public void characters() {
+		boxList = new ArrayList<Box>();
+	}
+
+	public void addBoxes(Box b) {
+		boxList.add(b);
+	}
 
 	public Sokoban() {
 		super();
 		board = new Actor[10][10];
+		characters();
 		buildLvl();
+
 	}
 
 	@Override
 	public void upPressed() {
-		//System.out.println("UP PRESSED");
+		// System.out.println("UP PRESSED");
 		// TODO Auto-generated method stub
 		int x = sokoPlayer.getX();
 		int y = sokoPlayer.getY();
-		if(board[x][y-1].getClass() != Wall.class) {
+		if (board[x][y - 1].getClass() != Wall.class) {
 			Boolean collision = false;
-			if(board[x][y-1].getClass() == Box.class) {
-				 collision = moveBox((Box)board[x][y-1], 0, -1);
+			for (int i = 0; i < boxList.size(); i++) {
+				Box box = boxList.get(i);
+				int xPos = box.getX();
+				int yPos = box.getY();
+				if (xPos == x && yPos == y - 1) {
+					collision = moveBox(box, 0, -1);
+				}
+
 			}
-			if(!collision) {
-				board[x][y] = new Blank(x, y);
+			if (!collision) {
 				sokoPlayer.move(0, -1);
-				x = sokoPlayer.getX();
-				y = sokoPlayer.getY();
-				board[x][y] = sokoPlayer;
 				obsList.get(0).updater();
 			}
 		}
@@ -51,16 +58,18 @@ public class Sokoban extends Game {
 		int x = sokoPlayer.getX();
 		int y = sokoPlayer.getY();
 		Boolean collision = false;
-		if(board[x][y+1].getClass() != Wall.class) {
-			if(board[x][y+1].getClass() == Box.class) {
-				collision = moveBox((Box)board[x][y+1], 0, 1);
+		if (board[x][y + 1].getClass() != Wall.class) {
+			for (int i = 0; i < boxList.size(); i++) {
+				Box box = boxList.get(i);
+				int xPos = box.getX();
+				int yPos = box.getY();
+				if (xPos == x && yPos == y + 1) {
+					collision = moveBox(box, 0, 1);
+				}
+
 			}
-			if(!collision) {
-				board[x][y] = new Blank(x, y);
+			if (!collision) {
 				sokoPlayer.move(0, 1);
-				x = sokoPlayer.getX();
-				y = sokoPlayer.getY();
-				board[x][y] = sokoPlayer;
 				obsList.get(0).updater();
 			}
 		}
@@ -72,19 +81,21 @@ public class Sokoban extends Game {
 		int x = sokoPlayer.getX();
 		int y = sokoPlayer.getY();
 		Boolean collision = false;
-		if(board[x-1][y].getClass() != Wall.class) {
-			if(board[x-1][y].getClass() == Box.class) {
-				collision = moveBox((Box)board[x-1][y], -1, 0);
+		if (board[x - 1][y].getClass() != Wall.class) {
+			for (int i = 0; i < boxList.size(); i++) {
+				Box box = boxList.get(i);
+				int xPos = box.getX();
+				int yPos = box.getY();
+				if (xPos == x - 1 && yPos == y) {
+					collision = moveBox(box, -1, 0);
+				}
 			}
-			if(!collision) {
-				board[x][y] = new Blank(x, y);
+			if (!collision) {
 				sokoPlayer.move(-1, 0);
-				x = sokoPlayer.getX();
-				y = sokoPlayer.getY();
-				board[x][y] = sokoPlayer;
 				obsList.get(0).updater();
 			}
 		}
+
 	}
 
 	@Override
@@ -93,16 +104,18 @@ public class Sokoban extends Game {
 		int x = sokoPlayer.getX();
 		int y = sokoPlayer.getY();
 		Boolean collision = false;
-		if(board[x+1][y].getClass() != Wall.class) {
-			if(board[x+1][y].getClass() == Box.class) {
-				collision = moveBox((Box)board[x+1][y], 1, 0);
+		if (board[x + 1][y].getClass() != Wall.class) {
+			for (int i = 0; i < boxList.size(); i++) {
+				Box box = boxList.get(i);
+				int xPos = box.getX();
+				int yPos = box.getY();
+				if (xPos == x + 1 && yPos == y) {
+					collision = moveBox(box, 1, 0);
+				}
+
 			}
-			if(!collision) {
-				board[x][y] = new Blank(x, y);
+			if (!collision) {
 				sokoPlayer.move(1, 0);
-				x = sokoPlayer.getX();
-				y = sokoPlayer.getY();
-				board[x][y] = sokoPlayer;
 				obsList.get(0).updater();
 			}
 		}
@@ -114,16 +127,17 @@ public class Sokoban extends Game {
 		for (int i = 0; i < level1.length(); i++) {
 			y = i / board.length;
 			x = i % board.length;
-			//System.out.println(x + " " + y);
+			// System.out.println(x + " " + y);
 			if (level1.charAt(i) == '#') {
 				board[x][y] = new Wall(x, y);
 			}
 			if (level1.charAt(i) == 's') {
 				sokoPlayer = new Player(x, y);
-				board[x][y] = sokoPlayer;
+				board[x][y] = new Blank(x, y);
 			}
 			if (level1.charAt(i) == 'b') {
-				board[x][y] = new Box(x, y);
+				boxList.add(new Box(x, y));
+				board[x][y] = new Blank(x, y);
 			}
 			if (level1.charAt(i) == ' ') {
 				board[x][y] = new Blank(x, y);
@@ -133,17 +147,33 @@ public class Sokoban extends Game {
 			}
 		}
 	}
-	
+
 	public boolean moveBox(Box b, int x, int y) {
 		int xBox = b.getX();
 		int yBox = b.getY();
-		if(board[xBox+x][yBox+y].getClass() == Wall.class || board[xBox+x][yBox+y].getClass() == Box.class) {
+		if (board[xBox + x][yBox + y].getClass() == Wall.class) {
 			return true;
 		}
-		b.setX(xBox+x);
-		b.setY(yBox+y);
-		board[xBox][yBox] = new Blank(xBox, yBox);
-		board[xBox+x][yBox+y] = b;
+		for (int i = 0; i < boxList.size(); i++) {
+			Box box = boxList.get(i);
+			int xPos = box.getX();
+			int yPos = box.getY();
+			if (xPos == xBox + x && yPos == yBox + y) {
+				return true;
+			}
+
+		}
+		b.setX(xBox + x);
+		b.setY(yBox + y);
 		return false;
+	}
+
+	@Override
+	public ArrayList<Actor> getMoveable() {
+		ArrayList<Actor> list = new ArrayList<Actor>();
+		list.addAll(boxList);
+		list.add(sokoPlayer);
+
+		return list;
 	}
 }

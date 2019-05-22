@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -71,6 +72,14 @@ public class View extends JPanel implements KeyListener, Observer {
 
 			}
 
+		}
+		
+		ArrayList<Actor> list = game.getMoveable();
+		for(int i = 0; i < list.size(); i++) {
+			Actor act = list.get(i);
+			Image img = act.getImage();
+			g.drawImage(img, square * act.getX(), square * act.getY(), square, square, null);
+			
 		}
 	}
 
