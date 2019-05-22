@@ -27,5 +27,4 @@ public abstract class Game {
 	public void addObs(Observer o) {
 		obsList.add(o);
 	}
-
 }
