@@ -15,5 +15,4 @@ public class Wall extends Actor {
 		Image image = Icon.getImage();
 		setImage(image);
 	}
-
 }
