@@ -55,22 +55,20 @@ public class View extends JPanel implements KeyListener, Observer {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		//System.out.println("ritar");
+		// System.out.println("ritar");
 		Actor[][] board = game.getBoard();
 		int square = width / board.length;
 
 		for (int x = 0; x < board.length; x++) {
 			for (int y = 0; y < board[0].length; y++) {
 				Actor actor = board[x][y];
-				//if (actor == null)
-					//System.out.println("ingen actor " + x + " " + y);
+				// if (actor == null)
+				// System.out.println("ingen actor " + x + " " + y);
 				if (actor != null) {
 					Image img = actor.getImage();
 					g.drawImage(img, square * x, square * y, square, square, null);
 				}
-
 			}
-
 		}
 	}
 
