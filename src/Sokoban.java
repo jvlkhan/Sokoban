@@ -6,8 +6,16 @@ import FrameWork.Observer;
 
 public class Sokoban extends Game {
 
-	String level1 = "##########" + "#  b     #" + "#  b     #" + "#s b###x##" + "#   #  ###" + "#x     ###"
-			+ "#x   b  x#" + "## b    x#" + "###      #" + "##########";
+	String level1 = "##########" + 
+					"#        #" + 
+					"#  b   b #" + 
+					"#s b###x##" + 
+					"#   #  ###" + 
+					"#x     ###" + 
+					"#x   b  x#" + 
+					"## b    x#" + 
+					"###      #" + 
+					"##########";
 
 	Player sokoPlayer;
 	ArrayList<Box> boxList;
@@ -50,6 +58,9 @@ public class Sokoban extends Game {
 				obsList.get(0).updater();
 			}
 		}
+		if(checkWin() == true) {
+			System.out.println("Win");
+		}
 	}
 
 	@Override
@@ -73,6 +84,9 @@ public class Sokoban extends Game {
 				obsList.get(0).updater();
 			}
 		}
+		if(checkWin() == true) {
+			System.out.println("Win");
+		}
 	}
 
 	@Override
@@ -95,7 +109,9 @@ public class Sokoban extends Game {
 				obsList.get(0).updater();
 			}
 		}
-
+		if(checkWin() == true) {
+			System.out.println("Win");
+		}
 	}
 
 	@Override
@@ -118,6 +134,9 @@ public class Sokoban extends Game {
 				sokoPlayer.move(1, 0);
 				obsList.get(0).updater();
 			}
+		}
+		if(checkWin() == true) {
+			System.out.println("Win");
 		}
 	}
 
@@ -161,11 +180,23 @@ public class Sokoban extends Game {
 			if (xPos == xBox + x && yPos == yBox + y) {
 				return true;
 			}
-
 		}
 		b.setX(xBox + x);
 		b.setY(yBox + y);
 		return false;
+	}
+
+	public boolean checkWin() {
+		for (int i = 0; i < boxList.size(); i++) {
+			Box box = boxList.get(i);
+			int xPos = box.getX();
+			int yPos = box.getY();
+			Actor a = board[xPos][yPos];
+			if(a.getClass() != blankMarked.class) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override

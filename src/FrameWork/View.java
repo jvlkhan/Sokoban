@@ -69,9 +69,7 @@ public class View extends JPanel implements KeyListener, Observer {
 					Image img = actor.getImage();
 					g.drawImage(img, square * x, square * y, square, square, null);
 				}
-
 			}
-
 		}
 		
 		ArrayList<Actor> list = game.getMoveable();
@@ -79,7 +77,6 @@ public class View extends JPanel implements KeyListener, Observer {
 			Actor act = list.get(i);
 			Image img = act.getImage();
 			g.drawImage(img, square * act.getX(), square * act.getY(), square, square, null);
-			
 		}
 	}
 
