@@ -48,6 +48,9 @@ public class View extends JPanel implements KeyListener, Observer {
 		if (key == KeyEvent.VK_DOWN) {
 			game.downPressed();
 		}
+		if (key == KeyEvent.VK_X) {
+			game.nextLevel();
+		}
 
 	}
 
@@ -93,6 +96,11 @@ public class View extends JPanel implements KeyListener, Observer {
 			g.drawString("WIN", width/2-70, height/2);
 			
 	
+		}
+		if(game.getWin() == false) {
+			
+			g.setFont(new Font("TimesRoman", Font.BOLD, 60));
+			g.drawString("", width/2-70, height/2);
 		}
 	}
 

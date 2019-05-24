@@ -22,6 +22,8 @@ public abstract class Game {
 
 	public abstract void rightPressed();
 	
+	public abstract void nextLevel();
+	
 	public abstract ArrayList<Actor> getMoveable();
 	
 	public void addObs(Observer o) {
