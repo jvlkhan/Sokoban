@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 import FrameWork.Actor;
 import FrameWork.Game;
-import FrameWork.Observer;
 
 public class Sokoban extends Game {
+	
 
 	String level1 = "##########" + 
 					"#        #" + 
@@ -19,7 +19,7 @@ public class Sokoban extends Game {
 
 	Player sokoPlayer;
 	ArrayList<Box> boxList;
-
+	
 	public void characters() {
 		boxList = new ArrayList<Box>();
 	}
@@ -35,6 +35,8 @@ public class Sokoban extends Game {
 		buildLvl();
 
 	}
+	
+	
 
 	@Override
 	public void upPressed() {
@@ -60,6 +62,7 @@ public class Sokoban extends Game {
 		}
 		if(checkWin() == true) {
 			System.out.println("Win");
+			win = true;
 		}
 	}
 
@@ -86,6 +89,7 @@ public class Sokoban extends Game {
 		}
 		if(checkWin() == true) {
 			System.out.println("Win");
+			win = true;
 		}
 	}
 
@@ -111,6 +115,7 @@ public class Sokoban extends Game {
 		}
 		if(checkWin() == true) {
 			System.out.println("Win");
+			win = true;
 		}
 	}
 
@@ -136,9 +141,17 @@ public class Sokoban extends Game {
 			}
 		}
 		if(checkWin() == true) {
-			System.out.println("Win");
+			//System.out.println("Win");
+			win = true;
+			
+			
 		}
 	}
+	
+	
+		
+		
+	
 
 	public void buildLvl() {
 		int x = 0;
@@ -196,8 +209,10 @@ public class Sokoban extends Game {
 				return false;
 			}
 		}
-		return true;
+		return true; 
+			
 	}
+	
 
 	@Override
 	public ArrayList<Actor> getMoveable() {

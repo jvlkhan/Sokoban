@@ -1,6 +1,7 @@
 package FrameWork;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -23,6 +24,7 @@ public class View extends JPanel implements KeyListener, Observer {
 		setPreferredSize(new Dimension(width, height));
 		addKeyListener(this);
 		setFocusable(true);
+		
 	}
 
 	@Override
@@ -73,12 +75,24 @@ public class View extends JPanel implements KeyListener, Observer {
 
 		}
 		
+		
+		
 		ArrayList<Actor> list = game.getMoveable();
 		for(int i = 0; i < list.size(); i++) {
 			Actor act = list.get(i);
 			Image img = act.getImage();
 			g.drawImage(img, square * act.getX(), square * act.getY(), square, square, null);
 
+		}
+		
+		if(game.getWin() == true) {
+			//JLabel label1 = new JLabel("Win");
+			//add(label1, BorderLayout.CENTER);
+			//label1.setVisible(true);
+			g.setFont(new Font("TimesRoman", Font.BOLD, 60));
+			g.drawString("WIN", width/2-70, height/2);
+			
+	
 		}
 	}
 

@@ -27,4 +27,10 @@ public abstract class Game {
 	public void addObs(Observer o) {
 		obsList.add(o);
 	}
+	protected boolean win = false;
+
+	public boolean getWin() {
+		return win;
+		
+	}
 }

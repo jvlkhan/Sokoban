@@ -1,7 +1,6 @@
 package FrameWork;
 
 import java.awt.Image;
-import java.util.*;
 
 public class Actor {
 	private final int SPACE = 20;
