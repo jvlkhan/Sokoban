@@ -47,6 +47,13 @@ public class View extends JPanel implements KeyListener, Observer {
 		if (key == KeyEvent.VK_DOWN) {
 			game.downPressed();
 		}
+/*<<<<<<< HEAD
+=======*/
+		if (key == KeyEvent.VK_X) {
+			game.nextLevel();
+		}
+
+/*>>>>>>> branch 'master' of https://github.com/gulheo/sokoban.git*/
 	}
 
 	@Override
@@ -86,6 +93,11 @@ public class View extends JPanel implements KeyListener, Observer {
 			// label1.setVisible(true);
 			g.setFont(new Font("TimesRoman", Font.BOLD, 60));
 			g.drawString("WIN", width / 2 - 70, height / 2);
+		}
+		if(game.getWin() == false) {
+			
+			g.setFont(new Font("TimesRoman", Font.BOLD, 60));
+			g.drawString("", width/2-70, height/2);
 		}
 	}
 

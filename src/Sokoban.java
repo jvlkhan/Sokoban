@@ -16,9 +16,22 @@ public class Sokoban extends Game {
 					"## b    x#" + 
 					"###      #" + 
 					"##########";
-
+	
+	String level2 = " ######## " + 
+					"##x     ##" + 
+					"#     x  #" + 
+					"#bb## b  #" + 
+					"#   #    #" + 
+					"#x  b ####" + 
+					"#   b x # " + 
+					"###   ### " + 
+					"  #x  #   " + 
+					"  #####   ";
+	
 	Player sokoPlayer;
 	ArrayList<Box> boxList;
+	ArrayList<String> levelList;
+	int level = 0;
 	
 	public void characters() {
 		boxList = new ArrayList<Box>();
@@ -32,9 +45,19 @@ public class Sokoban extends Game {
 		super();
 		board = new Actor[10][10];
 		characters();
+		levelList = new ArrayList<String>();
+		levelList.add(level1);
+		levelList.add(level2);
 		buildLvl();
 
 	}
+/*<<<<<<< HEAD
+=======*/
+	
+	private void resetLvl() {
+		boxList = new ArrayList<Box>();
+	}
+/*>>>>>>> branch 'master' of https://github.com/gulheo/sokoban.git*/
 
 	@Override
 	public void upPressed() {
@@ -61,6 +84,7 @@ public class Sokoban extends Game {
 		if(checkWin() == true) {
 			System.out.println("Win");
 			win = true;
+			//buildLvl();
 		}
 	}
 
@@ -88,6 +112,7 @@ public class Sokoban extends Game {
 		if(checkWin() == true) {
 			System.out.println("Win");
 			win = true;
+			//buildLvl();
 		}
 	}
 
@@ -114,6 +139,7 @@ public class Sokoban extends Game {
 		if(checkWin() == true) {
 			System.out.println("Win");
 			win = true;
+			//buildLvl();
 		}
 	}
 
@@ -139,39 +165,59 @@ public class Sokoban extends Game {
 			}
 		}
 		if(checkWin() == true) {
-			//System.out.println("Win");
 			win = true;
 			
 			
 		}
 	}
 	
+/*<<<<<<< HEAD
+=======*/
+	public void nextLevel() {
+		if(win) {
+			level++;
+		}
+		//resetar banan om man ej fått win o trycker x
+		resetLvl();
+		buildLvl();
+		win = false;
+		obsList.get(0).updater();
+
+	}
+
+
+/*>>>>>>> branch 'master' of https://github.com/gulheo/sokoban.git*/
 	public void buildLvl() {
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < level1.length(); i++) {
+
+		String currentlevel = levelList.get(level);
+
+		for (int i = 0; i < currentlevel.length(); i++) {
 			y = i / board.length;
 			x = i % board.length;
 			// System.out.println(x + " " + y);
-			if (level1.charAt(i) == '#') {
+			if (currentlevel.charAt(i) == '#') {
 				board[x][y] = new Wall(x, y);
 			}
-			if (level1.charAt(i) == 's') {
+			if (currentlevel.charAt(i) == 's') {
 				sokoPlayer = new Player(x, y);
 				board[x][y] = new Blank(x, y);
 			}
-			if (level1.charAt(i) == 'b') {
+			if (currentlevel.charAt(i) == 'b') {
 				boxList.add(new Box(x, y));
 				board[x][y] = new Blank(x, y);
 			}
-			if (level1.charAt(i) == ' ') {
+			if (currentlevel.charAt(i) == ' ') {
 				board[x][y] = new Blank(x, y);
 			}
-			if (level1.charAt(i) == 'x') {
+			if (currentlevel.charAt(i) == 'x') {
 				board[x][y] = new blankMarked(x, y);
 			}
 		}
 	}
+		
+	
 
 	public boolean moveBox(Box b, int x, int y) {
 		int xBox = b.getX();
@@ -213,4 +259,5 @@ public class Sokoban extends Game {
 
 		return list;
 	}
+	
 }
