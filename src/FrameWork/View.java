@@ -24,7 +24,6 @@ public class View extends JPanel implements KeyListener, Observer {
 		setPreferredSize(new Dimension(width, height));
 		addKeyListener(this);
 		setFocusable(true);
-		
 	}
 
 	@Override
@@ -48,7 +47,6 @@ public class View extends JPanel implements KeyListener, Observer {
 		if (key == KeyEvent.VK_DOWN) {
 			game.downPressed();
 		}
-
 	}
 
 	@Override
@@ -72,27 +70,22 @@ public class View extends JPanel implements KeyListener, Observer {
 					g.drawImage(img, square * x, square * y, square, square, null);
 				}
 			}
-
 		}
-		
-		
-		
+
 		ArrayList<Actor> list = game.getMoveable();
-		for(int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < list.size(); i++) {
 			Actor act = list.get(i);
 			Image img = act.getImage();
 			g.drawImage(img, square * act.getX(), square * act.getY(), square, square, null);
 
 		}
-		
-		if(game.getWin() == true) {
-			//JLabel label1 = new JLabel("Win");
-			//add(label1, BorderLayout.CENTER);
-			//label1.setVisible(true);
+
+		if (game.getWin() == true) {
+			// JLabel label1 = new JLabel("Win");
+			// add(label1, BorderLayout.CENTER);
+			// label1.setVisible(true);
 			g.setFont(new Font("TimesRoman", Font.BOLD, 60));
-			g.drawString("WIN", width/2-70, height/2);
-			
-	
+			g.drawString("WIN", width / 2 - 70, height / 2);
 		}
 	}
 

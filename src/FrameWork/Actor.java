@@ -3,6 +3,7 @@ package FrameWork;
 import java.awt.Image;
 
 public class Actor {
+	//SPACE ???
 	private final int SPACE = 20;
 	private int x;
 	private int y;

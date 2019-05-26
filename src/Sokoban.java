@@ -35,8 +35,6 @@ public class Sokoban extends Game {
 		buildLvl();
 
 	}
-	
-	
 
 	@Override
 	public void upPressed() {
@@ -148,11 +146,6 @@ public class Sokoban extends Game {
 		}
 	}
 	
-	
-		
-		
-	
-
 	public void buildLvl() {
 		int x = 0;
 		int y = 0;
@@ -209,11 +202,9 @@ public class Sokoban extends Game {
 				return false;
 			}
 		}
-		return true; 
-			
+		return true; 	
 	}
 	
-
 	@Override
 	public ArrayList<Actor> getMoveable() {
 		ArrayList<Actor> list = new ArrayList<Actor>();
