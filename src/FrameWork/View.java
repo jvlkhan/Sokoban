@@ -47,13 +47,9 @@ public class View extends JPanel implements KeyListener, Observer {
 		if (key == KeyEvent.VK_DOWN) {
 			game.downPressed();
 		}
-/*<<<<<<< HEAD
-=======*/
 		if (key == KeyEvent.VK_X) {
 			game.nextLevel();
 		}
-
-/*>>>>>>> branch 'master' of https://github.com/gulheo/sokoban.git*/
 	}
 
 	@Override
@@ -84,7 +80,6 @@ public class View extends JPanel implements KeyListener, Observer {
 			Actor act = list.get(i);
 			Image img = act.getImage();
 			g.drawImage(img, square * act.getX(), square * act.getY(), square, square, null);
-
 		}
 
 		if (game.getWin() == true) {

@@ -51,13 +51,10 @@ public class Sokoban extends Game {
 		buildLvl();
 
 	}
-/*<<<<<<< HEAD
-=======*/
 	
 	private void resetLvl() {
 		boxList = new ArrayList<Box>();
 	}
-/*>>>>>>> branch 'master' of https://github.com/gulheo/sokoban.git*/
 
 	@Override
 	public void upPressed() {
@@ -74,7 +71,6 @@ public class Sokoban extends Game {
 				if (xPos == x && yPos == y - 1) {
 					collision = moveBox(box, 0, -1);
 				}
-
 			}
 			if (!collision) {
 				sokoPlayer.move(0, -1);
@@ -102,7 +98,6 @@ public class Sokoban extends Game {
 				if (xPos == x && yPos == y + 1) {
 					collision = moveBox(box, 0, 1);
 				}
-
 			}
 			if (!collision) {
 				sokoPlayer.move(0, 1);
@@ -157,7 +152,6 @@ public class Sokoban extends Game {
 				if (xPos == x + 1 && yPos == y) {
 					collision = moveBox(box, 1, 0);
 				}
-
 			}
 			if (!collision) {
 				sokoPlayer.move(1, 0);
@@ -166,13 +160,9 @@ public class Sokoban extends Game {
 		}
 		if(checkWin() == true) {
 			win = true;
-			
-			
 		}
 	}
 	
-/*<<<<<<< HEAD
-=======*/
 	public void nextLevel() {
 		if(win) {
 			level++;
@@ -182,11 +172,8 @@ public class Sokoban extends Game {
 		buildLvl();
 		win = false;
 		obsList.get(0).updater();
-
 	}
 
-
-/*>>>>>>> branch 'master' of https://github.com/gulheo/sokoban.git*/
 	public void buildLvl() {
 		int x = 0;
 		int y = 0;
@@ -217,8 +204,6 @@ public class Sokoban extends Game {
 		}
 	}
 		
-	
-
 	public boolean moveBox(Box b, int x, int y) {
 		int xBox = b.getX();
 		int yBox = b.getY();
@@ -259,5 +244,4 @@ public class Sokoban extends Game {
 
 		return list;
 	}
-	
 }
