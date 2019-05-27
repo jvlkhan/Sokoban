@@ -63,6 +63,7 @@ public class View extends JPanel implements KeyListener, Observer {
 		Actor[][] board = game.getBoard();
 		int square = width / board.length;
 
+		// goes through the whole board and draws the images for the board
 		for (int x = 0; x < board.length; x++) {
 			for (int y = 0; y < board[0].length; y++) {
 				Actor actor = board[x][y];
@@ -76,6 +77,7 @@ public class View extends JPanel implements KeyListener, Observer {
 		}
 
 		ArrayList<Actor> list = game.getMoveable();
+		// draws the moveable obejcts in the game
 		for (int i = 0; i < list.size(); i++) {
 			Actor act = list.get(i);
 			Image img = act.getImage();
@@ -83,6 +85,7 @@ public class View extends JPanel implements KeyListener, Observer {
 		}
 
 		if (game.getWin() == true) {
+			// writes win across the window
 			// JLabel label1 = new JLabel("Win");
 			// add(label1, BorderLayout.CENTER);
 			// label1.setVisible(true);

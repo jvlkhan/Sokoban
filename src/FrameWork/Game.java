@@ -13,7 +13,8 @@ public abstract class Game {
 	public Actor[][] getBoard() {
 		return board;
 	}
-
+	
+	// uses abstract so that we can override them
 	public abstract void upPressed();
 
 	public abstract void downPressed();

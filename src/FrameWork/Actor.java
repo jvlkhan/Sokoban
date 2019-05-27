@@ -3,7 +3,7 @@ package FrameWork;
 import java.awt.Image;
 
 public class Actor {
-	//SPACE ???
+	// the wall image is 20x20 px, this reflects the SPACE constant
 	private final int SPACE = 20;
 	private int x;
 	private int y;
